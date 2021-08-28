@@ -6,6 +6,7 @@ public class Bird : MonoBehaviour
 {
     // 鳥のプレハブを格納する配列
     public GameObject[] BirdPrefabs;
+    public GameObject Treasure;
 
     // 連鎖を消す最小数
     [SerializeField]
@@ -86,6 +87,12 @@ public class Bird : MonoBehaviour
                 // 補充
                 StartCoroutine(DropBirds(removeCount));
             }
+            if (removeCount <= 7 && removeCount >= removeBirdMinCount)
+            {
+                float x = Random.Range(-4.0f, 4.0f);
+                float y = 8.0f;
+                Instantiate(Treasure, new Vector2(x, y), Quaternion.identity);
+            }
 
             foreach (GameObject obj in removableBirdList)
             {
@@ -120,7 +127,8 @@ public class Bird : MonoBehaviour
             // ランダムで鳥を出現させてIDを格納
             int id = Random.Range(0, BirdPrefabs.Length);
             // 鳥を発生させる
-            GameObject bird = (GameObject)Instantiate(BirdPrefabs[id],pos ,
+            GameObject bird = (GameObject)Instantiate(BirdPrefabs[id],
+                pos,
                 Quaternion.AngleAxis(Random.Range(-40, 40), Vector3.forward));
             // 作成した鳥の名前を変更します
             bird.name = "Bird" + id;
