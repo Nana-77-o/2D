@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bird : MonoBehaviour
 {
     // 鳥のプレハブを格納する配列
     public GameObject[] BirdPrefabs;
-    public GameObject Treasure;
 
     // 連鎖を消す最小数
     [SerializeField]
@@ -21,6 +21,9 @@ public class Bird : MonoBehaviour
     private GameObject lastBird;
     private string currentName;
     List<GameObject> removableBirdList = new List<GameObject>();
+    
+    public static int score;
+    public Text Scoretext;
 
     void Start()
     {
@@ -79,6 +82,8 @@ public class Bird : MonoBehaviour
             int removeCount = removableBirdList.Count;
             if (removeCount >= removeBirdMinCount)
             {
+                score += 100;
+                Scoretext.text = string.Format("Score:{0}",score);
                 // 消す
                 foreach (GameObject obj in removableBirdList)
                 {
@@ -87,11 +92,9 @@ public class Bird : MonoBehaviour
                 // 補充
                 StartCoroutine(DropBirds(removeCount));
             }
-            if (removeCount <= 7 && removeCount >= removeBirdMinCount)
+            else if (removeCount <= 7)
             {
-                float x = Random.Range(-4.0f, 4.0f);
-                float y = 8.0f;
-                Instantiate(Treasure, new Vector2(x, y), Quaternion.identity);
+                score += 1000;
             }
 
             foreach (GameObject obj in removableBirdList)
@@ -103,6 +106,11 @@ public class Bird : MonoBehaviour
             lastBird = null;
         };
         StartCoroutine(DropBirds(50));
+    }
+
+    public static int getscore()
+    {
+        return score;
     }
     private void PushToBirdList(GameObject obj)
     {

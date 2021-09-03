@@ -698,10 +698,9 @@ MonoBehaviour:
   - {fileID: 8825393471569014801, guid: f411aacbe71b7d54dbda2bf42d62ea58, type: 3}
   - {fileID: 3035664277964333975, guid: bbfc92642c11e9d49a07d7a7be1464a1, type: 3}
   - {fileID: 7556565789405429574, guid: c02053b4bb6440041a2f76006af6f985, type: 3}
-  Treasure: {fileID: 5428842659516019738, guid: 7384f7a40e9cc364d986e5ac41e61df3,
-    type: 3}
   removeBirdMinCount: 3
   birdDistance: 1.6
+  Scoretext: {fileID: 1231715528}
 --- !u!4 &763044143
 Transform:
   m_ObjectHideFlags: 0
@@ -957,7 +956,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 126, y: 237}
+  m_AnchoredPosition: {x: 65.7, y: 237}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231715528
