@@ -24,9 +24,13 @@ public class Bird : MonoBehaviour
     
     public static int score;
     public Text Scoretext;
+    public AudioClip sound1;
+    AudioSource audioSoure;
 
     void Start()
     {
+        audioSoure = GetComponent<AudioSource>();
+
         Touchi.Began += (info) =>
         {
             // クリック地点でヒットしているオブジェクトを取得
@@ -82,6 +86,7 @@ public class Bird : MonoBehaviour
             int removeCount = removableBirdList.Count;
             if (removeCount >= removeBirdMinCount)
             {
+                audioSoure.PlayOneShot(sound1);
                 score += 100;
                 Scoretext.text = string.Format("Score:{0}",score);
                 // 消す
